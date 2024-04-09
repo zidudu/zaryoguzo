@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+int main() {
+	int array[10][5];
+	int sum = 0;
+	int pying = 0;
+	for (int i = 0; i < 10; i++) {
+		array[i][0] = 80;
+		array[i][1] = 70;
+		array[i][2] = 90;
+		sum += array[i][0] + array[i][1] + array[i][2];
+		pying = sum / 3;
+		array[i][3] = sum;
+		array[i][4] = pying;
+	}
+	
+	cout << "\t 학번 \t 국어 \t 영어 \t 수학 \t 총점 \t 평균" << endl;
+	cout << "****************************************************************" << endl;
+	for (int i = 0; i < 5; i++) {
+		cout << "\t " << array[i][0] << "\t " << array[i][1] << "\t " << array[i][2] << "\t " << array[i][3] << "\t " << array[i][4] << "\t " << array[i][5];
+		cout << endl;
+	}
+
+	return 0;
+}
