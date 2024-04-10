@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+using namespace std;
+int main() {
+	srand(time(NULL));
+	//행 학생수 10명, 열 학번,수학,국어,영어,총합,평균 6개
+	//string name[6]= { "num","math","gug","eng","sum","tal"};
+	const int row = 3;
+	const int column = 6;
+	int array[row][column];
+	//i는 행,j는 열
+	for (int i = 0; i < row; i++) {
+		int sum = 0;
+		//학생 번호를 미리 입력
+		array[i][0] = i;
+		//수학 국어 영어 성적 넣기
+		//printf("%d 번 학생", i);
+		for (int j = 0; j < column-3; j++) {
+			array[i][j + 1]=rand() % 101;
+			//scanf_s("%d", &array[i][j + 1]);
+			
+			//성적을 총합에 더함
+			sum += array[i][j + 1];
+		}
+		//총합값 5번째 인덱스에 넣기
+		array[i][4] = sum;
+		//평균값 6번째 인덱스에 넣기
+		array[i][5] = sum / 3;
+	}
+	printf("학번\t수학\t국어\t영어\t총합\t평균\n");
+	printf("************************************************\n");
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < column; j++) {
+			//학번부터 평균까지 출력
+			printf("%d\t", array[i][j]);
+
+		}
+		printf("\n\n");
+
+
+	}
+	return 0;
+}
