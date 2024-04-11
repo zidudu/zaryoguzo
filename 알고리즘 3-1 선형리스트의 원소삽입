@@ -1,0 +1,28 @@
+#include <stdio.h>
+	using namespace std;
+int main() {
+	int L[10] = {10,20,30,40,50,60,70};
+	int n = 7, x = 5;
+	int k = 0;
+	int i;
+	
+	for (i = 0; i < n; i = i + 1) {
+		if (L[i] <= x && x <= L[i + 1]) {
+			k = i + 1;
+			break;
+		}
+	}
+	if (i == n)
+		k = n;
+	for (int i = n; i > k; i = i -1) {
+		L[i] = L[i - 1];
+	}
+	L[k] = x;
+	for (int j = 0; j < 8; j++) {
+		printf("%d ", L[j]);
+	}
+
+
+
+	return 0;
+} 
