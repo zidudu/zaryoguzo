@@ -1,0 +1,23 @@
+//strcpy() : 문자열 복사 함수, 문자열을 복사할때 자동으로 NULL값이 추가됨
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char src_string[]="Red flag";
+	char dest_string[] = "Everything ends";
+	char* return_value;
+	printf("\n");
+	printf(" ** src: %s\n", src_string);
+	printf(" ** 변수 크기 : %1d\n", sizeof(src_string));
+	printf(" ** 포인터 값: %x\n\n", src_string);
+}
+return_value =strcpy(dest_string, src_string);
+printf("복사한 문자열 정보 :");
+printf(" ** dest: %s\n", dest_string);
+printf(" ** 변수 크기 : %ld\n", sizeof(dest_string));
+printf("** 포인터 값: %x\n\n", dest_string);
+
+printf("반환값에 대한:\n");
+printf(" ** return_value: %s\n", return_value);
+printf(" ** 포인터 값: %x\n\n", return_value);
+return 0;
