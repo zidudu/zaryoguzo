@@ -1,0 +1,18 @@
+//strcpy() : 문자열 복사 함수, 문자열을 복사할때 자동으로 NULL값이 추가됨
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	//malloc 함수 원형
+	void* malloc(size_t, size);
+	//할당한 메모리의 주소를 리턴, 메모리 할당 실패하면 NULL
+	// 리턴형이 void*:malloc은 단순히 메모리만 할당하는 함수이기 때문에
+	//어떠한 데이터형을 저장하는지는 예측 불가능
+	//따라서 in형 저장하기 위해선 리턴되는 int*로변환해야함
+
+	//size_t:부호없는 정수로 정의된 데이터 형식, 주로 배열크기,메모리할당,인덱스와 같이
+	//음수가 아닌 크기 값을 나타내는 데 사용 ex) %u
+
+	char* ptr = (char*)malloc(100);
+	return 0;
+}
