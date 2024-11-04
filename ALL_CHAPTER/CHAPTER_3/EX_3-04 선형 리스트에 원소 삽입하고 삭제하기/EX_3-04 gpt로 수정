@@ -1,0 +1,112 @@
+#pragma once //헤더의 중복선언 방지
+#define MAX 10 //상수 선언 //MAX는 전역변수임
+
+#include <stdio.h>
+
+//원소 삽입
+int insertElement(int L[], int n, int x) {
+    int i, k = 0, move = 0; //move는 자리 이동 횟수 카운터
+
+    //원소의 크기를 비교하여 삽입 위치 k 찾기
+    for (i = 0; i < n; i++) {
+        if (L[i] <= x && x <= L[i + 1]) { //i번째보다 크거나 같고, i+1번째보다 작거나 같을때 i+1자리로 
+            k = i + 1;
+            break;
+        }
+    }
+    if (i == n) k = n; //삽입 원소가 가장 큰 원소일 경우 k를 제일 큰 자리인 n번째로 지정
+
+    //마지막 원소부터 k+1 원소까지 뒤로 자리 이동
+    for (i = n; i > k; i--) {
+        L[i] = L[i - 1];
+        move++;
+    }
+    L[k] = x; //자리 이동하고 나온 삽입 위치 k에 삽입 원소 x를 저장함
+    return move; //움직임 횟수 반환
+}
+
+//원소 삭제
+int deleteElement(int L[], int n, int x) {
+    int i, k = n, move = 0;
+
+    //원소 크기 비교하여 삭제 위치 k 찾기
+    for (i = 0; i < n; i++) {
+        if (L[i] == x) {
+            k = i;
+            break;
+        }
+    }
+
+    if (i == n) return n; //삭제할 위치가 없을 때
+
+    //k+1부터 마지막 원소까지 앞으로 자리 이동
+    for (i = k; i < n - 1; i++) {
+        L[i] = L[i + 1];
+        move++;
+    }
+    return move;
+}
+
+void printList(int L[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%3d ", L[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int list[MAX] = { 10, 20, 40, 50, 60, 70 };
+    int size = 6; //초기 리스트 크기
+    int choice, value, move;
+
+    while (1) {
+        printf("\n======================\n");
+        printf(" 선형 리스트 관리 프로그램\n");
+        printf("======================\n");
+        printf("1. 원소 삽입\n");
+        printf("2. 원소 삭제\n");
+        printf("3. 리스트 출력\n");
+        printf("4. 종료\n");
+        printf("메뉴를 선택하세요: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("삽입할 값을 입력하세요: ");
+                scanf("%d", &value);
+                move = insertElement(list, size, value);
+                if (move > 0 || size < MAX) {
+                    size++;
+                    printf("원소가 삽입되었습니다. 자리 이동 횟수: %d\n", move);
+                } else {
+                    printf("리스트가 꽉 차서 삽입할 수 없습니다.\n");
+                }
+                break;
+            
+            case 2:
+                printf("삭제할 값을 입력하세요: ");
+                scanf("%d", &value);
+                move = deleteElement(list, size, value);
+                if (move == size) {
+                    printf("리스트에 해당 원소가 없습니다.\n");
+                } else {
+                    size--;
+                    printf("원소가 삭제되었습니다. 자리 이동 횟수: %d\n", move);
+                }
+                break;
+            
+            case 3:
+                printf("현재 리스트: ");
+                printList(list, size);
+                printf("원소의 갯수: %d\n", size);
+                break;
+            
+            case 4:
+                printf("프로그램을 종료합니다.\n");
+                return 0;
+            
+            default:
+                printf("잘못된 선택입니다. 다시 입력해주세요.\n");
+        }
+    }
+}
