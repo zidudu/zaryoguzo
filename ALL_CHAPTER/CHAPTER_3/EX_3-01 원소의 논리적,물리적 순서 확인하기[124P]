@@ -1,1 +1,18 @@
+//3-1
+#include <stdio.h>
 
+int main() {
+	int i, sale[4] = { 157,209, 251,312 };
+
+	for (i = 0; i < 4; i++) {
+		printf("\n adress: %u sale[%d]=%d", &sale[i], i, sale[i]);
+		//%u로 배열 원소의 주소 표현함, 4바이트씩 올라가는 걸 볼 수 있음
+	}
+	getchar(); return 0;
+}
+/*
+ adress: 3876583144 sale[0]=157
+ adress: 3876583148 sale[1]=209
+ adress: 3876583152 sale[2]=251
+ adress: 3876583156 sale[3]=312
+*/
